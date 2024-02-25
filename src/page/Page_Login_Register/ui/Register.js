@@ -76,7 +76,7 @@ function Register({ Value }) {
 
   return (
     <div className="FromLS RegisterForm">
-      <form onSubmit={""}>
+      <form onSubmit={() => {}}>
         <h1>Sign Up</h1>
         <div className="inputText">
           <label htmlFor="SEmail"> Email</label>
