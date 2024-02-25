@@ -19,6 +19,12 @@ function LSForm() {
   const { login, avatar_url } = data;
   const [searchParams] = useSearchParams();
   const code_Github = searchParams.get("code");
+  //lay dữ liệu của code trên đường dẫn
+
+  // http://localhost:3000/?code=aba6ed6e17210fa055ca ("code=" do github trả về )
+  // const code_Github = searchParams.get("code");
+  //console.log(code_Github)  (aba6ed6e17210fa055ca)
+
   useEffect(() => {
     Axios.get("http://localhost:8080/api/getAccessToken_Github/" + code_Github)
       .then((res) => {
@@ -30,7 +36,6 @@ function LSForm() {
             },
           })
             .then((respone) => {
-              console.log(respone);
               dispacth_Value({
                 type: "CHANGE",
                 payload: { Is_Login: true, data: respone.data },
@@ -44,16 +49,23 @@ function LSForm() {
 
   return (
     <div className="farme">
-      <div className="Login_Content">
-        {Is_Login && (
-          <>
-            <img src={avatar_url} alt="" />
-            <h2>{login}</h2>
-            <button>Logout</button>
-          </>
-        )}
-
-        {!Is_Login && <h2>You need Login</h2>}
+      <div className={`Login_Content`} id={`${!Is_Login ? "Hidden" : "n"}`}>
+        <img src={avatar_url} alt="" />
+        <h2>{login}</h2>
+        <button
+          onClick={() => {
+            localStorage.removeItem("Access_Token");
+            dispacth_Value({
+              type: "CHANGE",
+              payload: {
+                Is_Login: false,
+                data: { login: "", avatar_url: "" },
+              },
+            });
+          }}
+        >
+          Logout
+        </button>
       </div>
       <div className="formContent ">
         <span className="iconf">

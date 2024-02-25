@@ -26,6 +26,15 @@
     min-width: 300px !important;
 } 
 
+
+#Hidden{
+    width: 0 !important;
+    height: 0;
+    transition: .5s;
+    overflow: hidden;
+    opacity: 0;
+}
+
 .formContent .active{
     transform: translateX(-100%);
     opacity: 0;
@@ -394,6 +403,7 @@ body::-webkit-scrollbar{
     border-radius: 10px;
     padding: 5px;
     box-shadow: 2px 5px 10px #000000;
+    opacity: 1;
 }
 
 

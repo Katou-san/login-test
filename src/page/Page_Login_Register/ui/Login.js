@@ -1,9 +1,13 @@
 import "../css/Login.css";
 const Client_Id = "330b6c67acca4d537d39";
+// Client_Id lay trong github nha
 function Login({ dispacth_Value }) {
   const Login_With_Github = () => {
     window.location.assign(
       "https://github.com/login/oauth/authorize?client_id=" + Client_Id
+
+      // Sau khi xac nhan github tra ve duong dan "localhost:3000/code="ddaddwrfrf"
+      //                                                          code này do github trả về
     );
   };
   return (
